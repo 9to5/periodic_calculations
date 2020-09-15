@@ -29,7 +29,7 @@ module PeriodicCalculations
     def execute
       ActiveRecord::Base.connection_pool.with_connection do |connection|
         connection.execute(sanitized_sql).map do |elem|
-          [Date.parse(elem["frame"]).to_time, elem["result"].to_i]
+          [elem['frame'], elem['result'].to_i]
         end
       end
     end
